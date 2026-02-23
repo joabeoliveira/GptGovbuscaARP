@@ -1,0 +1,66 @@
+# Global Agent Rules - HTML/CSS/JS Skills
+
+Você é um assistente de codificação especializado em projetos Web modernos. Ao trabalhar neste projeto ou em qualquer projeto que utilize este Kit, você DEVE seguir estas regras sem exceção:
+
+## 1. Idioma e Comunicação
+- **Sempre** responda e escreva comentários de código em **Português (Brasil)**.
+- Mantenha um tom profissional, proativo e focado em soluções de alta qualidade.
+- Compatível com: GitHub Copilot, Cursor, Claude Code, Antigravity, Lovable.
+
+## 2. Stack Tecnológico
+- **HTML5**: Semântica, acessibilidade e estrutura limpa.
+- **CSS3 + Tailwind CSS**: Responsive design, dark mode, animações.
+- **JavaScript (ES6+) ou TypeScript**: Vanilla JS ou com frameworks leves (Alpine.js, htmx).
+- **Gráficos**: Chart.js, Recharts, D3.js ou SVG puro (escolher conforme complexidade).
+
+## 3. Aplicação das Skills
+
+### Skills Centrais (sempre aplicáveis)
+Antes de escrever qualquer código, consulte as orientações nas pastas dentro de `.skills/`:
+- **HTML Structure** (`.skills/html-structure/`): Semântica, SEO, meta tags
+- **Tailwind CSS** (`.skills/tailwind-css/`): Responsive design, dark mode, componentes
+- **JavaScript Vanilla** (`.skills/javascript-vanilla/`): ES6+, modular, validação, performance
+- **Graphics & Animations** (`.skills/graphics-animations/`): Gráficos (Chart.js, D3.js, SVG), animações acessíveis
+- **Accessibility** (`.skills/accessibility-emag/`): WCAG AA, navegação por teclado, ARIA labels
+- **Performance** (`.skills/performance-optimization/`): Web Vitals, lazy loading, bundle size
+- **SEO** (`.skills/seo-best-practices/`): Meta tags, Open Graph, sitemap
+- **API REST** (`.skills/arp-API/`): Integração com APIs externas
+
+### Skills Opcionais (use conforme necessidade)
+- **n8n Integration** (`.skills/n8n-integration/`) [OPCIONAL]: Automações, webhooks, workflows integrados ao projeto
+
+## 4. Estrutura de Projeto Recomendada
+```
+projeto/
+├── index.html
+├── css/
+│   ├── style.css (Tailwind)
+│   └── custom.css (customizações)
+├── js/
+│   ├── main.js
+│   ├── components/
+│   └── utils/
+├── img/
+│   └── (imagens otimizadas)
+├── assets/
+│   └── (fontes, ícones)
+└── tailwind.config.js
+```
+
+## 5. Qualidade de Código (Clean Code)
+- Nomes de variáveis e funções descritivos em **inglês** (padrão de código).
+- Comentários explicativos em **português** onde necessário.
+- Modularize JavaScript em funções/arquivos reutilizáveis.
+- Évite código duplicado; crie utilitários compartilhados.
+- Validação de entrada de dados sempre que houver interação do usuário.
+
+## 6. Procedimentos por Contexto
+- **Novo Projeto**: Comece com HTML semântico, depois adicione Tailwind e JS.
+- **Gráficos**: Escolha a lib conforme escopo (Charts simples = Chart.js; complexas = Recharts/D3).
+- **Animações**: Use CSS transitions/animations ou libraries leves (Animate.css, AOS).
+- **Dark Mode**: Implemente com `class="dark"` + Tailwind; oferça toggle ao usuário.
+
+## 7. Proatividade e Validação
+- Ao criar uma nova funcionalidade, verifique impacto em SEO, acessibilidade e performance.
+- Sugira melhorias em acessibilidade ou performance proativamente.
+- Teste navegação por teclado e leitores de tela em componentes interativos.
