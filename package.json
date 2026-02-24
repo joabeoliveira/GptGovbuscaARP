@@ -19,7 +19,9 @@
     "author": "Your Name",
     "license": "MIT",
     "scripts": {
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "dev": "node server.js",
+        "start": "node server.js"
     },
     "lint-staged": {
         "*.js": [
