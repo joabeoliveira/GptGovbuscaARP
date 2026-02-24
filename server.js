@@ -65,6 +65,12 @@ async function serveStatic(req, res) {
 }
 
 const server = http.createServer(async (req, res) => {
+  if (req.url === '/favicon.ico') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
   if (req.url.startsWith('/api/')) {
     await handleProxy(req, res);
     return;

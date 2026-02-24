@@ -21,7 +21,8 @@
     "scripts": {
         "prepare": "husky install",
         "dev": "node server.js",
-        "start": "node server.js"
+        "start": "node server.js",
+        "build:css": "tailwindcss -c tailwind.config.js -i src/tailwind.css -o css/tailwind.css --minify"
     },
     "lint-staged": {
         "*.js": [
@@ -31,6 +32,7 @@
     },
     "devDependencies": {
         "husky": "^7.0.0",
-        "lint-staged": "^11.0.0"
+        "lint-staged": "^11.0.0",
+        "tailwindcss": "^3.4.17"
     }
 }

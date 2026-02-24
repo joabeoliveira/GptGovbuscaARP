@@ -1,13 +1,13 @@
-const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const API_BASE = isLocalhost
-  ? `${window.location.origin}/api/`
-  : 'https://dadosabertos.compras.gov.br/';
-const CNPJ_BASE = isLocalhost
-  ? `${window.location.origin}/api/cnpj/`
-  : 'https://www.receitaws.com.br/v1/cnpj/';
-const CNPJ_BRASIL_API_BASE = isLocalhost
-  ? `${window.location.origin}/api/cnpj-br/`
-  : 'https://brasilapi.com.br/api/cnpj/v1/';
+const isFileProtocol = window.location.protocol === 'file:';
+const API_BASE = isFileProtocol
+  ? 'https://dadosabertos.compras.gov.br/'
+  : `${window.location.origin}/api/`;
+const CNPJ_BASE = isFileProtocol
+  ? 'https://www.receitaws.com.br/v1/cnpj/'
+  : `${window.location.origin}/api/cnpj/`;
+const CNPJ_BRASIL_API_BASE = isFileProtocol
+  ? 'https://brasilapi.com.br/api/cnpj/v1/'
+  : `${window.location.origin}/api/cnpj-br/`;
 
 export function buildUrl(path, params = {}) {
   const normalizedPath = String(path || '').replace(/^\//, '');
