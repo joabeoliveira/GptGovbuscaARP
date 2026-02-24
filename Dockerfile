@@ -3,6 +3,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
+ENV npm_config_ignore_scripts=true
 RUN npm install --omit=dev
 
 COPY . .
