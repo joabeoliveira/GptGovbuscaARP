@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Busca ARP por CATMAT</title>
         <meta name="description" content="Consulta de atas de registro de preco por CATMAT com dados do Compras.gov.br.">
+        <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +22,16 @@
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_10%_10%,rgba(14,116,144,0.18),transparent_60%),radial-gradient(50%_50%_at_90%_0%,rgba(217,119,6,0.15),transparent_60%),linear-gradient(180deg,#f8fafc_0%,#ffffff_55%)] dark:bg-[radial-gradient(60%_60%_at_10%_10%,rgba(14,116,144,0.2),transparent_60%),radial-gradient(50%_50%_at_90%_0%,rgba(217,119,6,0.16),transparent_60%),linear-gradient(180deg,#0f172a_0%,#020617_60%)]"></div>
 
             <header class="relative border-b border-white/60 bg-white/70 backdrop-blur dark:border-white/10 dark:bg-slate-950/70">
-                <nav aria-label="Principal" class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-                    <div>
-                        <p class="text-xs uppercase tracking-[0.3em] text-ocean">Busca ARP</p>
-                        <h1 class="font-display text-xl font-semibold text-ink dark:text-white">Inteligencia de adesoes por CATMAT</h1>
+                <div class="mx-auto max-w-6xl px-6 py-4">
+                      <img src="assets/banner-compact.svg" alt="GptGov Busca ARP Inteligencia nas buscas por ARPs e oportunidades de negocios" class="w-full rounded-2xl border border-white/40" loading="lazy">
+                </div>
+                <nav aria-label="Principal" class="mx-auto flex max-w-6xl items-center justify-between px-6 pb-6">
+                    <div class="flex items-center gap-4">
+                        <img src="assets/logo.svg" alt="Logo GptGov Busca ARP" class="h-12 w-auto" loading="lazy">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-ocean">Busca ARP</p>
+                            <h1 class="font-display text-xl font-semibold text-ink dark:text-white">Inteligencia de adesoes por CATMAT</h1>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
                         <button id="darkModeToggle" class="rounded-full border border-ocean/30 px-4 py-2 text-sm font-semibold text-ink transition hover:border-ocean hover:text-ocean focus:outline-none focus:ring-2 focus:ring-ocean/60 dark:text-white" type="button" aria-pressed="false">
