@@ -1,4 +1,36 @@
 import { fetchArpAtas, fetchArpItems, fetchCnpjDetails, fetchCnpjDetailsBrasilApi, fetchUnidadesItem } from './utils/api.js';
+// sinaliza que o módulo do app foi carregado (usado pelo fallback no HTML)
+window.__GGB_loaded = true;
+console.log('GptGov busca ARP: main.js carregado');
+
+// Painel de debug visível para ambientes sem acesso às DevTools
+function createDebugPanel() {
+  if (document.getElementById('ggb-debug')) return;
+  const panel = document.createElement('div');
+  panel.id = 'ggb-debug';
+  panel.style = 'position:fixed;right:12px;bottom:12px;z-index:99999;max-width:360px;max-height:240px;overflow:auto;font-family:Inter,Arial,sans-serif;font-size:12px;border-radius:8px;padding:8px;background:rgba(0,0,0,0.75);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.4)';
+  panel.innerHTML = '<div style="font-weight:600;margin-bottom:6px">GptGov Debug</div><pre id="ggb-debug-log" style="white-space:pre-wrap;max-height:200px;overflow:auto;margin:0;padding:0"></pre>';
+  document.body.appendChild(panel);
+}
+
+function appendDebug(msg) {
+  try {
+    console.debug(msg);
+    createDebugPanel();
+    const pre = document.getElementById('ggb-debug-log');
+    if (pre) pre.textContent = `${new Date().toISOString()} - ${msg}\n` + pre.textContent;
+  } catch (e) {
+    // ignore
+  }
+}
+
+window.addEventListener('error', (ev) => {
+  appendDebug('error: ' + (ev.message || ev.error || ev.filename || ev.type));
+});
+
+window.addEventListener('unhandledrejection', (ev) => {
+  appendDebug('unhandledrejection: ' + (ev.reason && ev.reason.message ? ev.reason.message : String(ev.reason)));
+});
 import { addDays, isValidCatmat, isValidDateRange, toIsoDate } from './utils/validation.js';
 import {
   renderRows,
