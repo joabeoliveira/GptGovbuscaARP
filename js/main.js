@@ -1,4 +1,4 @@
-import { fetchArpAtas, fetchArpItems, fetchCnpjDetails, fetchCnpjDetailsBrasilApi, fetchUnidadesItem } from './utils/api.js';
+import { fetchArpAtas, fetchArpItems, fetchCnpjDetails, fetchCnpjDetailsBrasilApi, fetchUnidadesItem, buildUrl } from './utils/api.js';
 // sinaliza que o módulo do app foi carregado (usado pelo fallback no HTML)
 window.__GGB_loaded = true;
 console.log('GptGov busca ARP: main.js carregado');
@@ -165,7 +165,12 @@ async function runSearch(page = 1) {
     state.lastFilters = { ...filters };
     state.page = page;
 
+    appendDebug('API URL: ' + buildUrl('/modulo-arp/2_consultarARPItem', filters));
     const response = await fetchArpItems(filters);
+    appendDebug('API response keys: ' + (response && typeof response === 'object' ? Object.keys(response).join(',') : String(response)));
+    if (response && Array.isArray(response.resultado)) {
+      appendDebug('resultado length: ' + response.resultado.length + ' (preview ' + JSON.stringify(response.resultado.slice(0,3)) + ')');
+    }
     let results = Array.isArray(response.resultado) ? response.resultado : [];
 
     state.totalPages = response.totalPaginas ?? 0;
