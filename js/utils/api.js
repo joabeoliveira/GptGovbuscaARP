@@ -1,11 +1,16 @@
+const hostname = window.location.hostname || '';
 const isFileProtocol = window.location.protocol === 'file:';
-const API_BASE = isFileProtocol
+const isStaticHost = isFileProtocol || hostname.endsWith('github.io') || hostname.endsWith('netlify.app') || hostname.endsWith('vercel.app');
+
+const API_BASE = isStaticHost
   ? 'https://dadosabertos.compras.gov.br/'
   : `${window.location.origin}/api/`;
-const CNPJ_BASE = isFileProtocol
+
+const CNPJ_BASE = isStaticHost
   ? 'https://www.receitaws.com.br/v1/cnpj/'
   : `${window.location.origin}/api/cnpj/`;
-const CNPJ_BRASIL_API_BASE = isFileProtocol
+
+const CNPJ_BRASIL_API_BASE = isStaticHost
   ? 'https://brasilapi.com.br/api/cnpj/v1/'
   : `${window.location.origin}/api/cnpj-br/`;
 
