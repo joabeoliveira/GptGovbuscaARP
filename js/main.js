@@ -79,6 +79,7 @@ const state = {
 
 function setStatus(message) {
   statusText.textContent = message;
+  appendDebug('status: ' + message);
 }
 
 function setError(message) {
@@ -89,11 +90,13 @@ function setError(message) {
   }
   errorBox.textContent = message;
   errorBox.classList.remove('hidden');
+  appendDebug('errorBox: ' + message);
 }
 
 function setLoading(isLoading) {
   submitButton.disabled = isLoading;
   submitButton.textContent = isLoading ? 'Consultando...' : 'Consultar ARPs';
+  appendDebug('loading: ' + String(isLoading));
 }
 
 function updatePagination() {
@@ -479,6 +482,7 @@ function setupDarkMode() {
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  appendDebug('form submit triggered');
   runSearch(1);
 });
 
