@@ -189,8 +189,40 @@ async function runSearch(page = 1) {
       renderRows(results, resultsBody);
       setStatus(`Encontrados ${state.totalResults} registros no total.`);
     } else {
-      renderEmptyRow(resultsBody);
-      setStatus('Nenhum registro encontrado para os filtros informados.');
+      // Retry once without date filters to broaden search (útil em deploys estáticos)
+      appendDebug('Nenhum resultado — tentando nova consulta sem filtros de data');
+      const altFilters = { ...filters };
+      delete altFilters.dataVigenciaInicialMin;
+      delete altFilters.dataVigenciaInicialMax;
+      appendDebug('API URL (retry): ' + buildUrl('/modulo-arp/2_consultarARPItem', altFilters));
+      try {
+        const retryResp = await fetchArpItems(altFilters);
+        const retryResults = Array.isArray(retryResp.resultado) ? retryResp.resultado : [];
+        appendDebug('retry resultado length: ' + retryResults.length);
+        if (retryResults.length) {
+          state.totalPages = retryResp.totalPaginas ?? 0;
+          state.totalResults = retryResp.totalRegistros ?? 0;
+          totalRegistros.textContent = String(state.totalResults);
+          totalPaginas.textContent = String(state.totalPages);
+          updatePagination();
+
+          if (onlyPositive.checked) {
+            setStatus('Aplicando filtro de adesao positiva (retry)...');
+            const filtered = await filterByMaxAdesao(retryResults);
+            renderRows(filtered, resultsBody);
+          } else {
+            renderRows(retryResults, resultsBody);
+          }
+          setStatus(`Encontrados ${state.totalResults} registros no total (sem filtro de data).`);
+        } else {
+          renderEmptyRow(resultsBody);
+          setStatus('Nenhum registro encontrado para os filtros informados.');
+        }
+      } catch (err) {
+        appendDebug('retry error: ' + String(err));
+        renderEmptyRow(resultsBody);
+        setStatus(`Nenhum registro encontrado para o CATMAT ${catmat}. Tente remover filtros de data ou verifique o código.`);
+      }
     }
 
     await triggerN8nWebhook({
